@@ -1,13 +1,21 @@
 import sqlite3
+import os
+from kivy.app import App
+from kivy.utils import platform
 
 DB_NAME = "servicio_tv.db"
 
 
-def get_conn():
-    conn = sqlite3.connect(DB_NAME)
-    conn.execute("PRAGMA foreign_keys = ON") # Activa la restricción de llaves foráneas
-    return conn
+def get_db_path():
+    if platform == "android":
+        app = App.get_running_app()
+        return os.path.join(app.user_data_dir, DB_NAME)
 
+    return DB_NAME
+
+
+def get_conn():
+    conn = sqlite3.connect(get_db_path())
 
 def crear_tablas():
     conn = get_conn()
