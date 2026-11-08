@@ -1,0 +1,12 @@
+{
+    "costos_creditos": {
+        "Impakto": 1500,
+        "IPTV": 500,
+        "ItvOpen": 800,
+        "IKS81W": 950
+    },
+
+    "dias_proyeccion": 7,
+
+    "dias_alerta_vencimiento": 5
+}

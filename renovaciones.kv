@@ -1,0 +1,82 @@
+<RenovacionesScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(8)
+
+        Label:
+            text: "Renovación de Usuarios"
+            font_size: "22sp"
+            size_hint_y: None
+            height: dp(40)
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(10)
+
+            TextInput:
+                id: filtro_usuario
+                hint_text: "Buscar usuario..."
+                multiline: False
+                on_text: root.filtrar_usuarios(self.text)
+
+            Spinner:
+                id: usuario_spinner
+                text: "Seleccionar usuario"
+                values: root.usuarios
+                on_text: root.buscar_usuario(self.text)
+
+        GridLayout:
+            cols: 2
+            size_hint_y: None
+            height: dp(70)
+
+            Label:
+                text: "Sistema"
+
+            Label:
+                id: lbl_sistema
+                text: "-"
+
+            Label:
+                text: "Vencimiento"
+
+            Label:
+                id: lbl_vencimiento
+                text: "-"
+
+        Label:
+            text: "Clientes asociados"
+            size_hint_y: None
+            height: dp(30)
+            bold: True
+
+        ScrollView:
+            GridLayout:
+                id: contenedor_clientes
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(10)
+
+            Button:
+                text: "Renovar"
+
+            Button:
+                text: "Limpiar"
+                on_press: root.limpiar()
+
+            Button:
+                text: "Volver"
+                on_press: app.root.current = "menu"
+
+        Button:
+            text: "RENOVAR"
+            bold: True
+            background_color: (0.2,0.7,0.3,1)
+            on_press: root.renovar_usuario()

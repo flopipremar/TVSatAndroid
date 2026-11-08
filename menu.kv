@@ -1,0 +1,44 @@
+<MenuScreen>:
+    name: "menu"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(20)
+
+        Label:
+            text: "Sistema TV Sat"
+            font_size: "24sp"
+            size_hint_y: None
+            height: dp(60)
+
+        Button:
+            text: "Clientes"
+            on_press: app.root.current = "clientes"
+
+        Button:
+            text: "Usuarios / Dispositivos"
+            on_press: app.root.current = "usuarios"
+
+        Button:
+            text: "Renovaciones"
+            on_release:
+                app.root.current = "renovaciones"
+        
+        Button:
+            text: "Compra de Créditos"
+            on_press: app.root.current = "creditos"
+
+        Button:
+            text: "Informes y Consultas"
+            on_press: app.root.current = "informes"
+
+        Button:
+            text: "IDs DE DISPOSITIVOS"
+            size_hint_y: None
+            height: dp(50)
+            background_normal: ''
+            background_color: (0.4, 0.3, 0.6, 1) # Un violeta para destacar
+            bold: True
+            on_press: app.root.current = 'migrador'
+
+        Widget:

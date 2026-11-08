@@ -1,0 +1,84 @@
+<MigradorScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(15)
+
+        Label:
+            text: "Buscar por Cliente"
+            size_hint_y: None
+            height: dp(25)
+            bold: True
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(8)
+
+            TextInput:
+                id: filtro_cliente
+                hint_text: "Escribí el nombre..."
+                multiline: False
+                size_hint_x: 0.45
+                on_text: root.filtrar_clientes(self.text)
+
+            Spinner:
+                id: cliente_spinner
+                text: "Seleccionar"
+                values: root.clientes_impakto
+                size_hint_x: 0.55
+                on_text: root.generar_filas_migracion(self.text)
+
+
+        Label:
+            text: "Buscar por Usuario"
+            size_hint_y: None
+            height: dp(25)
+            bold: True
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(8)
+
+            TextInput:
+                id: filtro_usuario
+                hint_text: "Escribí el usuario..."
+                multiline: False
+                size_hint_x: 0.45
+                on_text: root.filtrar_usuarios(self.text)
+
+            Spinner:
+                id: usuario_spinner
+                text: "Seleccionar"
+                values: root.usuarios
+                size_hint_x: 0.55
+                on_text: root.buscar_por_usuario(self.text)
+
+        ScrollView:
+            BoxLayout:
+                id: contenedor_migracion
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(10)
+        
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(10)
+
+            Button:
+                text: "Guardar cambios"
+                background_color: (0.2, 0.7, 0.3, 1)
+                on_press: root.guardar_migracion()
+
+            Button:
+                text: "Limpiar pantalla"
+                background_color: (0.5, 0.5, 0.5, 1)
+                on_press: root.limpiar_pantalla()
+
+            Button:
+                text: "Volver al menú"
+                background_color: (0.8, 0.3, 0.3, 1)
+                on_press: app.root.current = "menu"

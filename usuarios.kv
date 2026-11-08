@@ -1,0 +1,107 @@
+<UsuariosScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(8)
+
+        Label:
+            text: "Gestión de Usuarios y Dispositivos"
+            font_size: "22sp"
+            size_hint_y: None
+            height: dp(40)
+            bold: True
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(45)
+            spacing: dp(10)
+
+            TextInput:
+                id: buscador_general
+                hint_text: "Buscar cliente, usuario, teléfono o dirección..."
+                multiline: False
+                on_text: root.buscar(self.text)
+
+            Spinner:
+                id: cliente_spinner
+                text: "Seleccionar cliente"
+                values: root.clientes
+                size_hint_x: 0.45
+                on_text: root.generar_filas_usuarios(self.text)
+
+            Button:
+                text: "+"
+                size_hint_x: 0.12
+                bold: True
+                background_color: (0.2,0.7,0.2,1)
+                on_press: root.nueva_fila_vacia()
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(30)
+            spacing: dp(5)
+
+            Label:
+                text: "Sistema"
+                size_hint_x: .20
+
+            Label:
+                text: "Usuario"
+                size_hint_x: .30
+
+            Label:
+                text: "Vencimiento"
+                size_hint_x: .22
+
+            Label:
+                text: "ID Disp."
+                size_hint_x: .18
+
+            Label:
+                text: ""
+                size_hint_x: None
+                width: dp(40)
+
+        ScrollView:
+            GridLayout:
+                id: contenedor_usuarios
+                cols: 1
+                spacing: dp(8)
+                size_hint_y: None
+                height: self.minimum_height
+
+        Label:
+            id: label_ultimo
+            text: "Listo"
+            size_hint_y: None
+            height: dp(25)
+            font_size: "12sp"
+            color: 0.7,1,0.7,1
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(10)
+
+            Button:
+                text: "GUARDAR TODO"
+                bold: True
+                background_color: (0.1,0.5,0.8,1)
+                on_press: root.guardar_usuario()
+
+            Button:
+                text: "LIMPIAR"
+                size_hint_x: .6
+                on_press: root.limpiar_pantalla()
+
+            Button:
+                text: "BORRAR TODO"
+                size_hint_x: .6
+                background_color: (1,0.3,0.3,1)
+                on_press: root.borrar_usuarios_cliente()
+
+        Button:
+            text: "VOLVER AL MENÚ"
+            size_hint_y: None
+            height: dp(45)
+            on_press: app.root.current = "menu"

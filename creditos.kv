@@ -1,0 +1,95 @@
+#:import dp kivy.metrics.dp
+
+<CreditosScreen>:
+    name: "creditos"
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(8)
+
+        Label:
+            text: "Compra de Créditos"
+            font_size: "22sp"
+            size_hint_y: None
+            height: dp(40)
+
+        GridLayout:
+            cols: 4
+            spacing: dp(5)
+            size_hint_y: None
+            height: self.minimum_height
+
+            Label:
+                text: "Sistema"
+            Spinner:
+                id: sistema_spinner
+                text: "Seleccionar"
+                values: ["ItvOpen", "Impakto", "IPTV", "IKS81W"] # <--- AGREGADO IPTV
+                on_text: root.calcular()
+
+            Label:
+                text: "Packs (ItvOpen)"
+            TextInput:
+                id: packs
+                multiline: False
+                input_filter: "int"
+                on_text: root.calcular()
+                size_hint_y: None
+                height: dp(40)
+
+            Label:
+                text: "Créditos"
+            TextInput:
+                id: creditos
+                readonly: True
+                size_hint_y: None
+                height: dp(40)
+
+            Label:
+                text: "Costo total"
+            TextInput:
+                id: costo
+                readonly: True
+                size_hint_y: None
+                height: dp(40)
+
+            Label:
+                text: "Observaciones"
+            TextInput:
+                id: obs
+                size_hint_y: None
+                height: dp(60)
+
+            Label:
+                text: "Fecha (dd/mm/yyyy)"
+
+            TextInput:
+                id: fecha_input
+                multiline: False
+                size_hint_y: None
+                height: dp(35)
+        
+        Button:
+            text: "Registrar compra"
+            size_hint_y: None
+            height: dp(40)
+            on_press: root.registrar_compra()
+
+        Button:
+            text: "Ajustar Stock"
+            on_release: root.popup_ajuste_stock()
+        
+        ScrollView:
+            size_hint_y: 1
+
+            BoxLayout:
+                id: historial_box
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+
+        Button:
+            text: "Volver al menú"
+            size_hint_y: None
+            height: dp(40)
+            on_press: app.root.current = "menu"

@@ -1,0 +1,179 @@
+## clientes.kv actualizado
+#import dp kivy.metrics.dp
+
+<ClientesScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(10)
+        spacing: dp(8)
+
+        Label:
+            text: "Gestión de Clientes"
+            font_size: "22sp"
+            size_hint_y: None
+            height: dp(40)
+
+        GridLayout:
+            cols: 4
+            spacing: dp(8)
+            size_hint_y: None
+            height: self.minimum_height
+
+            Label:
+                text: "Nombre"
+                size_hint_y: None
+                height: dp(30)
+            TextInput:
+                id: nombre
+                multiline: False
+                size_hint_y: None
+                height: dp(40)
+                on_text: root.filtrar_clientes(self.text)
+
+            Label:
+                text: "Teléfono"
+                size_hint_y: None
+                height: dp(30)
+            TextInput:
+                id: telefono
+                multiline: False
+                size_hint_y: None
+                height: dp(40)
+
+            Label:
+                text: "Dirección"
+                size_hint_y: None
+                height: dp(30)
+            TextInput:
+                id: direccion
+                multiline: False
+                size_hint_y: None
+                height: dp(40)
+
+            Label:
+                text: "Vencimiento"
+                size_hint_y: None
+                height: dp(30)
+
+            BoxLayout:
+                spacing: dp(5)
+                size_hint_y: None
+                height: dp(40)
+                TextInput:
+                    id: venc_dia
+                    hint_text: "DD"
+                    input_filter: "int"
+                    size_hint_x: .3
+                TextInput:
+                    id: venc_mes
+                    hint_text: "MM"
+                    input_filter: "int"
+                    size_hint_x: .3
+                TextInput:
+                    id: venc_anio
+                    hint_text: "AAAA"
+                    input_filter: "int"
+                    size_hint_x: .4
+
+            Label:
+                text: "Importe"
+                size_hint_y: None
+                height: dp(30)
+            TextInput:
+                id: importe
+                multiline: False
+                input_filter: "float"
+                size_hint_y: None
+                height: dp(40)
+
+            Label:
+                text: "Dispositivos"
+                size_hint_y: None
+                height: dp(30)
+            TextInput:
+                id: dispositivos
+                text: "1"
+                input_filter: "int"
+                multiline: False
+                size_hint_y: None
+                height: dp(40)
+
+            Label:
+                text: "Vendedor"
+                size_hint_y: None
+                height: dp(30)
+
+            Spinner:
+                id: vendedor_spinner
+                text: "Sin vendedor"
+                values: root.lista_vendedores
+                size_hint_y: None
+                height: dp(40)
+
+            Label:
+                text: "Observaciones"
+                size_hint_y: None
+                height: dp(30)
+            TextInput:
+                id: obs
+                multiline: True
+                size_hint_y: None
+                height: dp(60)
+
+        # --- AQUÍ AGREGAMOS EL LABEL DEL HISTORIAL ---
+        Label:
+            id: historial_pagos_label
+            text: "Seleccioná un cliente para ver su último pago"
+            size_hint_y: None
+            height: dp(30)
+            color: (1, 1, 0, 1) # Color amarillo para que resalte
+            italic: True
+        # ---------------------------------------------
+
+        # Botones de acción
+        BoxLayout:
+            size_hint_y: None
+            height: dp(50)
+            spacing: dp(10)
+            padding: [0, dp(10)]
+            Button:
+                text: "Gestionar Usuarios"
+                background_color: (0.1, 0.8, 0.4, 1)
+                on_press: root.ir_a_usuarios()
+            Button:
+                text: "LIMPIAR / NUEVO"
+                background_color: (0.5, 0.5, 0.5, 1)
+                on_press: root.limpiar_campos()
+            Button:
+                text: "Guardar / Actualizar"
+                on_press: root.guardar_cliente()
+            Button:
+                text: "Registrar Pago"
+                background_color: (0.2, 0.7, 0.3, 1)
+                on_press: root.registrar_pago()
+            Button:
+                text: "Eliminar Cliente"
+                background_color: (1, 0.3, 0.3, 1)
+                on_press: root.borrar_cliente()
+
+        # Lista de clientes
+        ScrollView:
+            size_hint_y: 1
+            canvas.before:
+                Color:
+                    rgba: 0.15, 0.15, 0.15, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            GridLayout:
+                id: lista_clientes_container
+                cols: 1
+                spacing: dp(2)
+                size_hint_y: None
+                height: self.minimum_height
+
+        Button:
+            text: "Volver al menú"
+            size_hint_y: None
+            height: dp(45)
+            on_press: app.root.current = "menu"

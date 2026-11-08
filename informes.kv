@@ -1,0 +1,133 @@
+<InformesScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(15)
+
+        Label:
+            text: "Centro de Informes y Consultas"
+            font_size: "24sp"
+            size_hint_y: None
+            height: dp(50)
+            bold: True
+
+        GridLayout:
+            cols: 2
+            spacing: dp(20)
+            
+            # --- COLUMNA IZQUIERDA: INFORMES ---
+            BoxLayout:
+                orientation: "vertical"
+                spacing: dp(12)
+                Label:
+                    text: "INFORMES GENERALES"
+                    bold: True
+                    size_hint_y: None
+                    height: dp(30)
+                    color: (0.7, 0.7, 1, 1)
+
+                Button:
+                    text: "Usuarios a Vencer"
+                    background_normal: ''
+                    background_color: (0.7, 0.3, 0.3, 1) # Rojo terracota
+                    on_release: root.reporte_usuarios_vencer()
+
+                Button:
+                    text: "Clientes a Pagar"
+                    background_normal: ''
+                    background_color: (0.2, 0.4, 0.7, 1) # Azul oscuro
+                    on_release: root.reporte_clientes_pagar()
+
+                GridLayout:
+                    cols: 2
+                    spacing: dp(20)
+                    
+                    Button:
+                        text: "Proyección Semanal"
+                        background_color: (0.1, 0.6, 0.3, 1) # Verde esmeralda
+                        on_release: root.proyeccion("semanal")
+
+                    Button:
+                        text: "Proyección Mensual"
+                        background_color: (0.1, 0.6, 0.3, 1) # Verde esmeralda
+                        on_release: root.proyeccion("mensual")
+
+                Button:
+                    text: "Stock de Créditos"
+                    background_normal: ''
+                    background_color: (0.8, 0.5, 0.1, 1) # Naranja óxido
+                    on_press: root.reporte_creditos()
+                
+                Button:
+                    text: "Listado Clientes x Vendedor"
+                    background_normal: ''
+                    background_color: (0.4, 0.3, 0.6, 1) # Violeta
+                    on_press: root.clientes_por_vendedor()
+                
+                Button:
+                    text: "Listado Activos"
+                    background_normal: ''
+                    background_color: (0.4, 0.3, 0.6, 1) # Violeta
+                    on_press: root.informe_activos()
+                Widget: 
+
+            # --- COLUMNA DERECHA: CONSULTAS ---
+            BoxLayout:
+                orientation: "vertical"
+                spacing: dp(12)
+                Label:
+                    text: "CONSULTAS ESPECÍFICAS"
+                    bold: True
+                    size_hint_y: None
+                    height: dp(30)
+                    color: (1, 0.7, 0.7, 1)
+
+                Button:
+                    text: "Impakto: Clientes x Cantidad"
+                    background_normal: ''
+                    background_color: (0.4, 0.6, 0.4, 1) # Un verde oliva
+                    on_press: root.reporte_clientes_por_cantidad_impakto()
+                
+                Button:
+                    text: "Cuentas por Cliente"
+                    background_normal: ''
+                    background_color: (0.7, 0.3, 0.3, 1) # Rojo terracota
+                    on_press: root.consulta_cuentas_cliente()
+
+                Button:
+                    text: "Compartidos IMPAKTO" # Nombre nuevo
+                    background_normal: ''
+                    background_color: (0.6, 0.4, 0.2, 1)
+                    on_press: root.consulta_impakto()
+
+                Button:
+                    text: "Compartidos IPTV" # Botón nuevo
+                    background_normal: ''
+                    background_color: (0.5, 0.2, 0.5, 1) # Un color violeta/púrpura
+                    on_press: root.consulta_iptv()
+
+                Button:
+                    text: "Historial de Pagos"
+                    background_normal: ''
+                    background_color: (0.3, 0.5, 0.5, 1) # Verde azulado
+                    on_press: root.consulta_pagos_global()
+                Widget: 
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(55)
+            spacing: dp(15) # Espacio entre los dos botones
+
+            Button:
+                text: "EXPORTAR A EXCEL"
+                bold: True
+                background_normal: ''
+                background_color: (0.1, 0.5, 0.2, 1) # Verde Excel
+                on_press: root.exportar_excel_completo()
+
+            Button:
+                text: "VOLVER AL MENÚ"
+                bold: True
+                background_normal: ''
+                background_color: (0.15, 0.15, 0.15, 1) # Gris oscuro
+                on_press: app.root.current = "menu"

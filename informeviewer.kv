@@ -1,0 +1,60 @@
+<InformeViewer>:
+
+    name: "visor"
+
+    BoxLayout:
+
+        orientation: "vertical"
+
+        Label:
+
+            text: "VISOR DE INFORMES"
+            size_hint_y: None
+            height: 45
+
+        ScrollView:
+
+            Label:
+
+                id: lbl_informe
+
+                text: ""
+
+                text_size: self.width-20,None
+
+                size_hint_y: None
+
+                height: self.texture_size[1]
+
+                valign: "top"
+
+                halign: "left"
+
+        BoxLayout:
+
+            size_hint_y: None
+
+            height: 50
+
+            spacing: 5
+
+            Button:
+
+                text: "PDF"
+
+                on_release:
+                    root.exportar_pdf()
+
+            Button:
+
+                text: "Excel"
+
+                on_release:
+                    root.exportar_excel()
+
+            Button:
+
+                text: "Cerrar"
+
+                on_release:
+                    app.root.current="informes"
