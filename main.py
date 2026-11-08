@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.lang import Builder
+import os
 from informeviewer import InformeViewer
 from kivy.uix.screenmanager import ScreenManager, Screen # Importa Screen
 from db import crear_tablas
@@ -19,14 +20,15 @@ class MainApp(App):
         crear_tablas()
 
         # 1. Cargamos todos los archivos .kv para que Kivy conozca las "reglas"
-        Builder.load_file("menu.kv")
-        Builder.load_file("clientes.kv")
-        Builder.load_file("usuarios.kv")
-        Builder.load_file("creditos.kv")
-        Builder.load_file("informes.kv")
-        Builder.load_file('migrador.kv')
-        Builder.load_file("renovaciones.kv")
-        Builder.load_file("informeviewer.kv")
+       base_dir = os.path.dirname(os.path.abspath(__file__))
+       Builder.load_file(os.path.join(base_dir, "menu.kv"))
+       Builder.load_file(os.path.join(base_dir, "clientes.kv"))
+       Builder.load_file(os.path.join(base_dir, "usuarios.kv"))
+       Builder.load_file(os.path.join(base_dir, "creditos.kv"))
+       Builder.load_file(os.path.join(base_dir, "informes.kv"))
+       Builder.load_file(os.path.join(base_dir, "migrador.kv"))
+       Builder.load_file(os.path.join(base_dir, "renovaciones.kv"))
+       Builder.load_file(os.path.join(base_dir, "informeviewer.kv"))
 
         sm = ScreenManager()
 
