@@ -9,7 +9,6 @@ from kivy.clock import Clock
 from config import CONFIG
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
-import pandas as pd  # <--- Agregá este import arriba
 import os
 
 class InformesScreen(Screen):
@@ -728,6 +727,8 @@ class InformesScreen(Screen):
 
     def exportar_excel_completo(self):
         try:
+            import pandas as pd
+            
             conn = get_conn()
             # Traemos una sábana de datos completa y limpia
             query = """
